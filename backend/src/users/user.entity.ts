@@ -21,7 +21,7 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ select: false }) //per non farla mai visualizzare nelle risposte, neanche hashata
   password: string;
 
   @Column({ 
