@@ -1,0 +1,46 @@
+<mat-sidenav-container class="sidebar-container">
+    <div class="sidebar-logo">
+        <mat-icon class="logo-icon">bug_report</mat-icon>
+        <span>BUGBOARD26</span>
+    </div>
+    
+    <mat-nav-list>
+        <ng-container *ngFor="let item of menuItems">
+            <a mat-list-item
+            class="list-item"
+            *ngIf="!item.adminOnly || currentUser?.role === 'admin'"
+            [routerLink]="item.route"
+            routerLinkActive="active">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.label }}</span>
+            </a>
+        </ng-container>
+    </mat-nav-list>
+
+    <div class="sidebar-footer">
+
+        <div class="new-user-btn-container" *ngIf="currentUser?.role === 'admin'"
+            [class.hidden]="isCreateUserRoute()">
+            <button mat-stroked-button routerLink="/users/create" class="btn new-user-btn">
+                <mat-icon>person_add</mat-icon>
+                Nuovo utente
+            </button>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                {{ getInitials() }}
+            </div>
+            
+            <div class="user-details">
+                <span class="user-name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span>
+                <span class="user-email">{{ currentUser?.role }}</span>
+            </div>
+
+            <button mat-icon-button class="logout-button" (click)="logout()" matTooltip="Logout">
+                    <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </div>
+
+</mat-sidenav-container>
