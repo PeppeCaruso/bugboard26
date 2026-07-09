@@ -1,0 +1,97 @@
+<div class="dashboard-container">
+    <mat-card-header>
+        <mat-card-title>Benvenuto, {{ currentUser?.firstName }}</mat-card-title>
+        <p class="dashboard-subtitle">Ecco un riepilogo delle issue.</p>
+    </mat-card-header>
+
+    <div class="dashboard-content">
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <span class="stat-label">Issue aperte</span>
+                <span class="stat-number">{{ stats.todo }}</span>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <span class="stat-label">In progress</span>
+                <span class="stat-number">{{ stats.inProgress }}</span>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <span class="stat-label">Chiuse</span>
+                <span class="stat-number">{{ stats.done }}</span>
+            </mat-card-content>
+        </mat-card>
+
+        <button
+            mat-raised-button
+            routerLink="/issues/create"
+            class="btn new-issue-button">
+                <mat-icon>add</mat-icon>
+            Nuova Issue
+        </button>
+    </div>
+
+        <mat-card-header>
+            <mat-card-title style="margin-top: 40px;">Issues assegnate</mat-card-title>
+            <p class="subtitle">Ecco una lista delle issues che ti sono state assegnate.</p>
+        </mat-card-header>
+
+        <table mat-table [dataSource]="assignedIssues">
+
+            <!-- Tipo -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>Tipo</th>
+                <td mat-cell *matCellDef="let issue">
+                    <span class="badge badge-{{issue.type}}">{{ issue.type }}</span>
+                </td>
+            </ng-container>
+
+            <!-- Titolo -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Titolo</th>
+                <td mat-cell *matCellDef="let issue">{{ issue.title }}</td>
+            </ng-container>
+
+            <!-- Stato -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Stato</th>
+                <td mat-cell *matCellDef="let issue">
+                    <span class="badge badge-{{issue.status}}">{{ issue.status }}</span>
+                </td>
+            </ng-container>
+
+            <!-- Autore -->
+            <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef>Autore</th>
+                <td mat-cell *matCellDef="let issue">{{ issue.author?.firstName }} {{ issue.author?.lastName }}</td>
+            </ng-container>
+
+            <!-- Data -->
+            <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef>Data creazione</th>
+                <td mat-cell *matCellDef="let issue">{{ issue.createdAt | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Azioni -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let issue">
+                    <button  class="issue-details" mat-icon-button [routerLink]="['/issues', issue.id]" matTooltip="Dettagli">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+    <p *ngIf="assignedIssues.length === 0">
+    Nessuna issue assegnata
+    </p>
+</div>
