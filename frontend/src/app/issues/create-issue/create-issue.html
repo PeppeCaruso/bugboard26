@@ -1,0 +1,86 @@
+<div class="create-issue-container">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <mat-card class="create-issue-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>add_circle_outline</mat-icon>
+                    Nuova issue
+                </mat-card-title>
+                <mat-card-subtitle>Compila i campi per segnalare una nuova issue</mat-card-subtitle>
+            </mat-card-header>
+
+            <!-- Titolo -->
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Titolo </mat-label>
+                <input matInput formControlName="title" placeholder="Es. Login non funziona su Safari">
+                <mat-error *ngIf="createForm.get('title')?.hasError('required')">
+                    Il titolo è obbligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Descrizione -->
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Descrizione </mat-label>
+                <textarea matInput formControlName="description" placeholder="Descrivi il problema nel dettaglio..." rows="5"></textarea>
+                <mat-error *ngIf="createForm.get('title')?.hasError('required')">
+                    La descrizione è obbligatoria
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Tipo -->
+            <div class="form-group">
+                <mat-form-field appearance="outline" floatLabel="always" class="form-field">
+                    <mat-label>Tipo </mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option *ngFor="let type of issueTypes" [value]="type.value">
+                        {{ type.label }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="createForm.get('type')?.hasError('required')">
+                        Il tipo è obbligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Priorità -->
+                <mat-form-field appearance="outline" floatLabel="always" class="form-field">
+                    <mat-label>Priorità</mat-label>
+                    <mat-select formControlName="priority">
+                        <mat-option *ngFor="let p of priorities" [value]="p.value">
+                        {{ p.label }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Immagine -->
+             <div class="image-upload form-field">
+                <mat-label>Allega un'immagine</mat-label>
+                <div class="upload-area" (click)="fileInput.click()" *ngIf="!selectedFileName">
+                    <mat-icon>upload</mat-icon>
+                    <span>Clicca per caricare un'immagine</span>
+                </div>
+
+                <div class="image-preview" *ngIf="selectedFileName">
+                    <img [src]="imagePreviewUrl" alt="preview" class="preview-img">
+                    <button type="button" mat-icon-button class="remove-btn" (click)="removeImage()">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+                <input #fileInput type="file" accept="image/*" style="display:none" (change)="onFileSelected($event)">
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <mat-dialog-actions align="end">
+                <button class="btn cancel-btn" (click)="goBack()">
+                    <mat-icon>arrow_back</mat-icon>Indietro</button>
+                <button class="btn reset-btn" type="button" (click)="onCancel()" matTooltip="Pulisci form">Reset</button>
+                <button class="btn apply-btn" type="submit">
+                    <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                    <span *ngIf="!isLoading">Crea issue</span>
+                </button>
+            </mat-dialog-actions>
+            
+        </mat-card>
+    </form>
+</div>

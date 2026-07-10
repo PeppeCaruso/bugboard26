@@ -1,0 +1,104 @@
+.issue-list-container {
+    flex: 1;
+    padding: 40px;
+    overflow: auto;
+}
+
+mat-card-header {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+mat-card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.issue-list-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+}
+
+mat-card {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f0f4ff !important;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.issue-details, .delete-btn, .archive-btn {
+  border: none;
+  background-color: transparent;
+  color: #003880;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delete-btn {
+    color: red;
+}
+
+.archive-btn {
+    color: #e6a817;
+}
+
+.issue-list-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.new-issue-button {
+  width: fit-content;
+  height: 40px;
+  background-color: #005cbb;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.new-issue-button:hover {
+  background-color: #003880;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+.filters-button {
+  width: fit-content;
+  height: 40px;
+  background-color: white;
+  border: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  color: #8896a8;
+}
+
+.filters-button:hover {
+  background-color: #d0d0d0;
+}

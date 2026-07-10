@@ -1,0 +1,111 @@
+.create-issue-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-issue-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+mat-card-title mat-icon {
+    color: #005cbb;
+}
+
+mat-card-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-group .form-field {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.upload-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border: 1.5px dashed #d0d8e8;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #8896a8;
+  transition: border-color 0.2s ease;
+}
+
+.upload-area:hover {
+  border-color: #005cbb;
+  color: #005cbb;
+}
+.image-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #d0d8e8;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: white !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+mat-dialog-actions {
+  margin-top: 20px;
+  gap: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+}

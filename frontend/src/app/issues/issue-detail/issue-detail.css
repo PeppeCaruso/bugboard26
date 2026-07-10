@@ -1,0 +1,282 @@
+.issue-detail-container {
+  padding: 24px;
+}
+
+.back-btn {
+  color: #8896a8;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.issue-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Contenuto principale */
+.issue-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.issue-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.issue-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  color: #1a1a2e;
+}
+
+.issue-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.issue-meta {
+  font-size: 12px;
+  color: #8896a8;
+}
+
+.issue-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8896a8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.issue-description {
+  margin: 0;
+  font-size: 14px;
+  color: #1a1a2e;
+  line-height: 1.7;
+}
+
+.issue-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #d0d8e8;
+  cursor: pointer;
+}
+
+/* Commenti */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment {
+  display: flex;
+  gap: 12px;
+}
+
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #005cbb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.comment-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.comment-date {
+  font-size: 11px;
+  color: #8896a8;
+}
+
+.comment-content {
+  background-color: #f0f4ff;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #1a1a2e;
+  line-height: 1.6;
+}
+
+.no-comments {
+  color: #8896a8;
+  font-size: 13px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* Nuovo commento */
+.new-comment {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.new-comment-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.new-comment-input textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d8e8;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  background-color: #f0f4ff;
+}
+
+.new-comment-input textarea:focus {
+  outline: none;
+  border-color: #005cbb;
+}
+
+.new-comment-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.send-btn {
+  padding: 8px 24px;
+  border: 2px solid #005cbb;
+  color: #005cbb;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.send-btn:hover:not(:disabled) {
+  background-color: #005cbb;
+  color: white;
+}
+
+.send-btn:disabled {
+  border-color: #d0d8e8;
+  color: #d0d8e8;
+  cursor: not-allowed;
+}
+
+/* Pannello laterale */
+.issue-sidebar {
+  background-color: #f0f4ff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-label {
+  font-size: 11px;
+  color: #8896a8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.sidebar-value {
+  font-size: 13px;
+  color: #1a1a2e;
+}
+
+.no-value {
+  font-size: 13px;
+  color: #8896a8;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #1a1a2e;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #005cbb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Archivia */
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.archive-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: white;
+  background-color: #e6a817;
+  border: none;
+}
+
+.archive-btn:hover {
+  background-color: #d18e0f;
+}

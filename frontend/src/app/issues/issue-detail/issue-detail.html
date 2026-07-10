@@ -1,0 +1,153 @@
+<div class="issue-detail-container">
+
+  <!-- Back button -->
+  <button mat-button class="back-btn" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+    Indietro
+  </button>
+
+  <div class="issue-detail-content">
+
+    <!-- Contenuto principale -->
+    <div class="issue-main">
+
+      <!-- Header -->
+      <div class="issue-header">
+        <div class="issue-title-row">
+            <h2 class="issue-title">{{ issue?.title }}</h2>
+            <span class="badge badge-{{issue?.type}}">{{ issue?.type }}</span>
+        </div>
+        <span class="issue-meta">#{{ issue?.id }} · aperta il {{ issue?.createdAt | date:'dd/MM/yyyy' }}</span>
+    </div>
+
+      <!-- Descrizione -->
+      <div class="issue-section">
+        <h4 class="section-label">Descrizione</h4>
+        <p class="issue-description">{{ issue?.description }}</p>
+      </div>
+
+      <!-- Immagine -->
+      <div class="issue-section" *ngIf="issue?.imageName">
+        <h4 class="section-label">Immagine allegata</h4>
+        <a [href]="'http://localhost:3000/uploads/' + issue?.imageName" target="_blank">
+            <img [src]="'http://localhost:3000/uploads/' + issue?.imageName" 
+                alt="immagine allegata" 
+                class="issue-image"
+                matTooltip="Clicca per aprire a schermo intero">
+        </a>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Commenti -->
+      <div class="issue-section">
+        <h4 class="section-label">Commenti ({{ comments.length }})</h4>
+
+        <!-- Lista commenti -->
+        <div class="comments-list">
+          <div class="comment" *ngFor="let comment of comments">
+            <div class="comment-avatar">
+              {{ getInitials(comment.author.firstName, comment.author.lastName) }}
+            </div>
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">{{ comment.author.firstName }} {{ comment.author.lastName }}</span>
+                <span class="comment-date">{{ comment.createdAt | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="comment-content">{{ comment.content }}</div>
+            </div>
+          </div>
+
+          <p *ngIf="comments.length === 0" class="no-comments">Nessun commento ancora.</p>
+        </div>
+
+        <!-- Nuovo commento -->
+        <div class="new-comment" *ngIf="!issue?.archived">
+          <div class="comment-avatar">
+            {{ currentUser ? getInitials(currentUser.firstName, currentUser.lastName) : '?' }}
+          </div>
+          <div class="new-comment-input">
+            <textarea
+              [(ngModel)]="newComment"
+              placeholder="Aggiungi un commento..."
+              rows="3">
+            </textarea>
+            <div class="new-comment-actions">
+              <button class="btn send-btn" (click)="addComment()" [disabled]="!newComment.trim()">
+                Invia
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pannello laterale -->
+    <div class="issue-sidebar" *ngIf="!issue?.archived">
+
+      <!-- Stato -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Stato</span>
+        <mat-form-field appearance="outline" class="full-width sidebar-select">
+          <mat-select [value]="issue?.status" (selectionChange)="updateStatus($event.value)">
+            <mat-option *ngFor="let s of statusOptions" [value]="s.value">{{ s.label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Assegnazione -->
+      <div class="sidebar-section" *ngIf="currentUser?.role === 'admin'">
+        <span class="sidebar-label">Assegnato a</span>
+        <mat-form-field appearance="outline" class="full-width sidebar-select">
+          <mat-select [value]="issue?.assignee?.id || null" (selectionChange)="assignIssue($event.value)">
+            <mat-option [value]="null">— Nessuno —</mat-option>
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{ user.firstName }} {{ user.lastName }} ({{ user.role }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Priorità -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Priorità</span>
+        <span class="badge badge-{{issue?.priority}}" *ngIf="issue?.priority">{{ issue?.priority }}</span>
+        <span *ngIf="!issue?.priority" class="no-value">—</span>
+      </div>
+
+      <!-- Tipo -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Tipo</span>
+        <span class="badge badge-{{issue?.type}}">{{ issue?.type }}</span>
+      </div>
+
+      <!-- Creatore -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Creatore</span>
+        <div class="user-info">
+          <div class="user-avatar">
+            {{ issue?.author ? getInitials(issue!.author.firstName, issue!.author.lastName) : '?' }}
+          </div>
+          <span>{{ issue?.author?.firstName }} {{ issue?.author?.lastName }}</span>
+        </div>
+      </div>
+
+      <!-- Data creazione -->
+      <div class="sidebar-section">
+        <span class="sidebar-label">Data creazione</span>
+        <span class="sidebar-value">{{ issue?.createdAt | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <!-- Archivia (solo admin) -->
+      <div class="sidebar-footer" *ngIf="currentUser?.role === 'admin'">
+        <mat-divider></mat-divider>
+        <button class="btn archive-btn" (click)="archiveIssue()">
+          <mat-icon>archive</mat-icon>
+          Archivia issue
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
