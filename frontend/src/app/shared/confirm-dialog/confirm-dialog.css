@@ -1,0 +1,20 @@
+mat-dialog-actions {
+    gap: 5px;
+}
+
+.cancel-btn, .delete-btn {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    border: 2px solid #005cbb;
+    color: #005cbb;
+    background-color: transparent;
+}
+
+.delete-btn {
+    border: 2px solid #005cbb;
+    color: white;
+    background-color: #005cbb;
+}

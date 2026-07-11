@@ -1,0 +1,43 @@
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-group {
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-label {
+  font-size: 1rem;
+  color: #8896a8;
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.badge-unselected:hover {
+    background-color: #d0d0d0;
+}
+
+mat-dialog-actions {
+    gap: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.date-range-container {
+  display: flex;
+  gap: 12px;
+}
+
+.date-field {
+  flex: 1;
+}

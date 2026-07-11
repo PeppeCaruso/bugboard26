@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>Filtra issue</h2>
+
+<mat-dialog-content>
+
+  <div class="filter-group">
+    <span class="filter-label">Tipo</span>
+    <div class="chip-container">
+      <span
+        *ngFor="let type of typeOptions"
+        class="badge"
+        [ngClass]="isSelected(type, filterTypes) ? 'badge-' + type : 'badge-unselected'"
+        (click)="toggleFilter(type, filterTypes)">
+        {{ type }}
+      </span>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="filter-group">
+    <span class="filter-label">Stato</span>
+    <div class="chip-container">
+      <span
+        *ngFor="let status of statusOptions"
+        class="badge"
+        [ngClass]="isSelected(status, filterStatuses) ? 'badge-' + status : 'badge-unselected'"
+        (click)="toggleFilter(status, filterStatuses)">
+        {{ status }}
+      </span>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="filter-group">
+    <span class="filter-label">Priorità</span>
+    <div class="chip-container">
+      <span
+        *ngFor="let priority of priorityOptions"
+        class="badge"
+        [ngClass]="isSelected(priority, filterPriorities) ? 'badge-' + priority : 'badge-unselected'"
+        (click)="toggleFilter(priority, filterPriorities)">
+        {{ priority }}
+      </span>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="filter-group">
+    <span class="filter-label">Periodo</span>
+    <div class="date-range-container">
+      <mat-form-field appearance="outline" class="date-field">
+        <mat-label>Da</mat-label>
+        <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="dateFrom">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="date-field">
+        <mat-label>A</mat-label>
+        <input matInput [matDatepicker]="pickerTo" [(ngModel)]="dateTo" [min]="dateFrom">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="btn cancel-btn" (click)="close()">Annulla</button>
+  <button class="btn reset-btn" (click)="reset()">Reset</button>
+  <button class="btn apply-btn" color="primary" (click)="apply()">Applica</button>
+</mat-dialog-actions>
