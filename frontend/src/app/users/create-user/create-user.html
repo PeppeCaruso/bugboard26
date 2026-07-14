@@ -1,0 +1,76 @@
+<div class="create-user-container">
+    <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+        <mat-card class="create-user-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>add_circle_outline</mat-icon>
+                    Nuovo Utente
+                </mat-card-title>
+                <mat-card-subtitle>Compila i campi per creare un nuovo utente.</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Nome </mat-label>
+                <input matInput formControlName="firstName" placeholder="Es. Mario">
+                <mat-error *ngIf="createUserForm.get('firstName')?.hasError('required')">
+                    Il nome è obbligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Cognome </mat-label>
+                <input matInput formControlName="lastName" placeholder="Es. Rossi">
+                <mat-error *ngIf="createUserForm.get('lastName')?.hasError('required')">
+                    Il cognome è obbligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Es. mario.rossi@email.com">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="createUserForm.get('email')?.hasError('required')">
+                    L'email è obbligatoria
+                </mat-error>
+                <mat-error *ngIf="createUserForm.get('email')?.hasError('email')">
+                    Inserisci un'email valida
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="createUserForm.get('password')?.hasError('required')">
+                    La password è obbligatoria
+                </mat-error>
+                <mat-error *ngIf="createUserForm.get('password')?.hasError('minlength')">
+                    La password deve avere almeno 6 caratteri
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
+                <mat-label>Ruolo</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="user">Utente</mat-option>
+                    <mat-option value="admin">Amministratore</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+
+            <mat-dialog-actions align="end">
+                <button class="btn cancel-btn" (click)="goBack()">
+                    <mat-icon>arrow_back</mat-icon>Indietro</button>
+                <button class="btn reset-btn" type="button" (click)="onCancel()" matTooltip="Pulisci form">Reset</button>
+                <button class="btn apply-btn" type="submit">
+                    <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                    <span *ngIf="!isLoading">Crea utenza</span>
+                </button>
+            </mat-dialog-actions>
+            
+        </mat-card>
+    </form>
+</div>
