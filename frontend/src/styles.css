@@ -1,1 +1,152 @@
 /* You can add global styles to this file, and also import other style files */
+.snackbar-success {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.snackbar-error {
+  background-color: #e53935;
+  color: white;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-unselected {
+  background-color: #f0f4ff;
+  color: #8896a8;
+  cursor: pointer;
+}
+
+/* Tipo */
+.badge-bug { background-color: #fdecea; color: #c62828; }
+.badge-feature { background-color: #e8f5e9; color: #2e7d32; }
+.badge-question { background-color: #f3e5f5; color: #6a1b9a; }
+.badge-documentation { background-color: #e3f2fd; color: #1565c0; }
+
+/* Stato */
+.badge-todo { background-color: #e3f2fd; color: #1565c0; }
+.badge-in_progress { background-color: #fff8e1; color: #e65100; }
+.badge-done { background-color: #e8f5e9; color: #2e7d32; }
+
+/* Priorità */
+.badge-low { background-color: #e8f5e9; color: #2e7d32; }
+.badge-medium { background-color: #fff8e1; color: #e65100; }
+.badge-high { background-color: #fdecea; color: #c62828; }
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+}
+
+table {
+  border-radius: 8px !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+}
+
+tr.mat-mdc-header-row th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+tr.mat-mdc-header-row th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+tr.mat-mdc-row:last-child td:first-child {
+  border-radius: 0 0 0 12px;
+}
+
+tr.mat-mdc-row:last-child td:last-child {
+  border-radius: 0 0 12px 0;
+}
+
+th {
+  background-color: #005cbb !important;
+  color: white;
+}
+
+.cancel-btn, .apply-btn, .reset-btn {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cancel-btn, .reset-btn {
+    border: 2px solid #005cbb;
+    color: #005cbb;
+    background-color: transparent;
+}
+
+.cancel-btn {
+    margin-right: auto;
+}
+
+.apply-btn {
+    border: 2px solid #005cbb;
+    color: white;
+    background-color: #005cbb;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-strong-password-auto-fill-button {
+  display: none !important;
+}
+
+.sidebar-select .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+.sidebar-select .mat-mdc-form-field-infix {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: 40px !important;
+}
+
+.sidebar-select .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.mat-mdc-option {
+  font-size: 13px !important;
+  min-height: 36px !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  color: #005cbb !important;
+}
+
+.mat-mdc-option:hover {
+  background-color: #f0f4ff !important;
+}
+
+.mat-mdc-select-panel {
+  background-color: white !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: #f0f4ff !important;
+  color: #005cbb !important;
+}
