@@ -67,4 +67,7 @@ export class Issue {
 
   @OneToMany(() => Comment, (comment) => comment.issue)
   comments: Comment[];
+
+  @ManyToOne(() => User, { nullable: true })
+  assignee: User;
 }
