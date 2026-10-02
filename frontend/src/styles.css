@@ -57,7 +57,7 @@ p {
   color: #666;
 }
 
-table {
+table.mat-mdc-table {
   border-radius: 8px !important;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
 }
@@ -78,7 +78,7 @@ tr.mat-mdc-row:last-child td:last-child {
   border-radius: 0 0 12px 0;
 }
 
-th {
+th.mat-mdc-header-cell {
   background-color: #005cbb !important;
   color: white;
 }
@@ -149,4 +149,25 @@ input::-webkit-strong-password-auto-fill-button {
 .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
   background-color: #f0f4ff !important;
   color: #005cbb !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  table.mat-mdc-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cancel-btn, .apply-btn, .reset-btn {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
 }

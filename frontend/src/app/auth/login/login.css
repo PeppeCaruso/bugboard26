@@ -90,3 +90,40 @@ button[mat-raised-button]:not([disabled]) {
     flex: 1;
   }
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    flex: 1;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.4rem !important;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 0.75rem;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  mat-card-title {
+    font-size: 1.2rem !important;
+  }
+}

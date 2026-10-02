@@ -21,9 +21,9 @@
 
         <div class="new-user-btn-container" *ngIf="currentUser?.role === 'admin'"
             [class.hidden]="isCreateUserRoute()">
-            <button mat-stroked-button routerLink="/users/create" class="btn new-user-btn">
+            <button mat-stroked-button routerLink="/users/create" class="btn new-user-btn" matTooltip="Nuovo utente">
                 <mat-icon>person_add</mat-icon>
-                Nuovo utente
+                <span class="btn-label">Nuovo utente</span>
             </button>
         </div>
 

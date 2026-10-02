@@ -102,3 +102,50 @@ mat-icon {
 .filters-button:hover {
   background-color: #d0d0d0;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .issue-list-container {
+    padding: 16px;
+  }
+
+  .issue-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .header-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .new-issue-button,
+  .filters-button {
+    width: auto;
+    font-size: 0.85rem;
+  }
+
+  mat-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .issue-list-container {
+    padding: 8px;
+  }
+
+  mat-card-title {
+    font-size: 1.2rem !important;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+}

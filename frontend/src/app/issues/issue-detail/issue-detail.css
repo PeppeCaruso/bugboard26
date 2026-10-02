@@ -280,3 +280,50 @@
 .archive-btn:hover {
   background-color: #d18e0f;
 }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .issue-detail-content {
+    grid-template-columns: 1fr 200px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .issue-detail-container {
+    padding: 16px;
+  }
+
+  .issue-detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .issue-sidebar {
+    position: static;
+    order: -1;
+  }
+
+  .issue-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .issue-detail-container {
+    padding: 8px;
+  }
+
+  .issue-title {
+    font-size: 16px;
+  }
+
+  .comment-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 9px;
+  }
+
+  .new-comment-input textarea {
+    font-size: 12px;
+  }
+}

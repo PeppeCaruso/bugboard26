@@ -5,7 +5,6 @@
   left: 0;
   background-color: #f0f4ff;
   color: #005cbb;
-  width: 20%;
   border-radius: 0 10px 10px 0;
   height: 100vh;
   width: 260px;
@@ -154,7 +153,7 @@ mat-nav-list {
 
 .list-item {
   margin-bottom: 10px;
-} 
+}
 
 .list-item:hover, .list-item.active {
   background-color: #e3ecfa;
@@ -168,7 +167,7 @@ mat-nav-list {
 }
 
 .list-item mat-icon, .list-item span {
-  color: #8896a8 ;
+  color: #8896a8;
 }
 
 .list-item:hover mat-icon, .list-item:hover span {
@@ -177,4 +176,105 @@ mat-nav-list {
 
 .list-item.active mat-icon, .list-item.active span {
   color: #005cbb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    border-radius: 0;
+    border-bottom: 1px solid #d0d8e8;
+  }
+
+  .sidebar-logo {
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  mat-nav-list {
+    display: flex;
+    flex-direction: row;
+    padding: 8px !important;
+    justify-content: space-around;
+  }
+
+  .list-item {
+    margin-bottom: 0;
+  }
+
+  .list-item span {
+    display: none;
+  }
+
+  .list-item mat-icon {
+    margin-right: 0;
+  }
+
+  .sidebar-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    box-sizing: border-box;
+    background-color: #f0f4ff;
+    border-top: 1px solid #d0d8e8;
+    z-index: 100;
+  }
+
+  .new-user-btn-container {
+    padding: 0;
+    width: auto;
+  }
+
+  .new-user-btn {
+    min-width: unset;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .new-user-btn .btn-label {
+    display: none;
+  }
+
+  .new-user-btn mat-icon {
+    margin: 0;
+  }
+
+  .user-info {
+    width: auto;
+    border-top: none;
+    padding: 0;
+    flex: unset;
+    margin-left: auto;
+    gap: 12px;
+  }
+
+  .user-name, .user-email {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-logo span {
+    display: none;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
 }

@@ -109,3 +109,43 @@ mat-label {
   font-weight: 500;
   color: #666;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .create-issue-container {
+    padding: 16px;
+  }
+
+  .create-issue-card {
+    padding: 16px;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-group .form-field {
+    margin-right: 0;
+  }
+
+  mat-dialog-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-issue-card {
+    padding: 12px;
+  }
+
+  .upload-area {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+}
