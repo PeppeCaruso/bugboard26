@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Query, UseGuards, Request, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -15,10 +16,9 @@ export class IssuesController {
   @UseInterceptors(FileInterceptor('image', {
     storage: diskStorage({
       destination: './uploads',
-      filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        cb(null, `photo-${uniqueSuffix}${extname(file.originalname)}`);
-      },
+          filename: (req, file, cb) => {
+      cb(null, `photo-${randomUUID()}${extname(file.originalname)}`);
+    },
     }),
     fileFilter: (req, file, cb) => {
       if (!file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {

@@ -67,7 +67,7 @@ export class AuthService {
   };
 }
 
-  async findById(id: number): Promise<User | null> {
+  findById(id: number): Promise<User | null> {
     return this.userRepository.findOne({ where: { id } });
   }
 }

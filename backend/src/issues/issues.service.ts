@@ -12,7 +12,7 @@ export class IssuesService {
     private issueRepository: Repository<Issue>,
   ) {}
 
-  async create(createIssueDto: CreateIssueDto, author: User): Promise<Issue> {
+  create(createIssueDto: CreateIssueDto, author: User): Promise<Issue> {
     const issue = this.issueRepository.create({
       ...createIssueDto,
       author,
@@ -22,7 +22,7 @@ export class IssuesService {
     return this.issueRepository.save(issue);
   }
 
-  async findAll(filters?: {
+  findAll(filters?: {
     type?: string;
     status?: string;
     priority?: string;
@@ -82,7 +82,7 @@ export class IssuesService {
     return { todo, inProgress, done };
   }
 
-  async findAssignedToUser(userId: number): Promise<Issue[]> {
+  findAssignedToUser(userId: number): Promise<Issue[]> {
     return this.issueRepository
       .createQueryBuilder('issue')
       .leftJoinAndSelect('issue.author', 'author')
@@ -123,7 +123,7 @@ export class IssuesService {
   }
 
   //per le issues archiviate
-  async findArchived(): Promise<Issue[]> {
+  findArchived(): Promise<Issue[]> {
     return this.issueRepository
       .createQueryBuilder('issue')
       .leftJoinAndSelect('issue.author', 'author')

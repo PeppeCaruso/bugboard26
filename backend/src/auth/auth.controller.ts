@@ -21,7 +21,7 @@ export class AuthController {
 
   @Get('me') //endpoint protetto che restituisce i dati dell'utente attualmente loggato
   @UseGuards(AuthGuard('jwt'))
-  async me(@Request() req) {
+  me(@Request() req) {
     return req.user;
   }
 }
