@@ -16,6 +16,9 @@
                 <mat-error *ngIf="createForm.get('title')?.hasError('required')">
                     Il titolo è obbligatorio
                 </mat-error>
+                <mat-error *ngIf="createForm.get('title')?.hasError('minlength')">
+                    Il titolo deve contenere almeno 3 caratteri
+                </mat-error>
             </mat-form-field>
 
             <!-- Descrizione -->
@@ -24,6 +27,9 @@
                 <textarea matInput formControlName="description" placeholder="Descrivi il problema nel dettaglio..." rows="5"></textarea>
                 <mat-error *ngIf="createForm.get('description')?.hasError('required')">
                     La descrizione è obbligatoria
+                </mat-error>
+                <mat-error *ngIf="createForm.get('description')?.hasError('minlength')">
+                    La descrizione deve contenere almeno 10 caratteri
                 </mat-error>
             </mat-form-field>
 

@@ -121,19 +121,34 @@ export class CreateIssueComponent {
   //per il campo "immagine"
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      this.selectedFile = file;
-      this.selectedFileName = file.name;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imagePreviewUrl = e.target?.result as string;
-      };
-      reader.readAsDataURL(file);
+    if (!input.files || !input.files[0]) return;
+
+    const file = input.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+    // svuota il campo file: il file viene conservato in selectedFile,
+    // e così si può riselezionare anche lo stesso file dopo una rimozione
+    input.value = '';
+
+    if (!allowedTypes.includes(file.type)) {
+      this.snackBar.open('Formato non supportato: sono ammesse solo immagini JPG, PNG o GIF', 'Chiudi', {
+        duration: 3000,
+        panelClass: 'snackbar-error',
+      });
+      return;
     }
+
+    this.selectedFile = file;
+    this.selectedFileName = file.name;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.imagePreviewUrl = e.target?.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   removeImage(): void {
+    this.selectedFile = null;
     this.selectedFileName = '';
     this.imagePreviewUrl = '';
   }
