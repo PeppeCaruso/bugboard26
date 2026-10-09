@@ -22,7 +22,7 @@
             <mat-form-field appearance="outline" floatLabel="always" class="full-width form-field">
                 <mat-label>Descrizione </mat-label>
                 <textarea matInput formControlName="description" placeholder="Descrivi il problema nel dettaglio..." rows="5"></textarea>
-                <mat-error *ngIf="createForm.get('title')?.hasError('required')">
+                <mat-error *ngIf="createForm.get('description')?.hasError('required')">
                     La descrizione è obbligatoria
                 </mat-error>
             </mat-form-field>
