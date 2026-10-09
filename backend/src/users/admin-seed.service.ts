@@ -22,7 +22,10 @@ export class AdminSeedService implements OnApplicationBootstrap {
     });
     if (adminCount > 0) return;
 
-    const email = this.configService.get<string>('ADMIN_EMAIL') ?? 'admin@bugboard.com';
+    // normalizza l'email: le email non distinguono maiuscole e minuscole
+    const email = (this.configService.get<string>('ADMIN_EMAIL') ?? 'admin@bugboard.com')
+      .trim()
+      .toLowerCase();
     const password = this.configService.get<string>('ADMIN_PASSWORD') ?? 'Admin1234!';
 
     const admin = this.userRepository.create({

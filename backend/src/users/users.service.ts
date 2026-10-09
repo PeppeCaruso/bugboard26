@@ -18,8 +18,11 @@ export class UsersService {
     password: string;
     role: string;
   }): Promise<User> {
+    // normalizza l'email: le email non distinguono maiuscole e minuscole
+    const email = dto.email.trim().toLowerCase();
+
     const existing = await this.userRepository.findOne({
-      where: { email: dto.email },
+      where: { email },
     });
     if (existing) throw new ConflictException('Email già in uso');
 
@@ -28,7 +31,7 @@ export class UsersService {
     const user = this.userRepository.create({
       firstName: dto.firstName,
       lastName: dto.lastName,
-      email: dto.email,
+      email,
       password: hashedPassword,
       role: dto.role as UserRole,
     });
