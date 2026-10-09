@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, Query, UseGuards, Request, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, Query, UseGuards, Request, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -6,9 +6,12 @@ import { extname } from 'path';
 import { AuthGuard } from '@nestjs/passport';
 import { IssuesService } from './issues.service';
 import { CreateIssueDto } from './dto/create-issue.dto';
+import { UserRole } from '../users/user.entity';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
 
 @Controller('issues')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class IssuesController {
   constructor(private issuesService: IssuesService) {}
 
@@ -16,13 +19,13 @@ export class IssuesController {
   @UseInterceptors(FileInterceptor('image', {
     storage: diskStorage({
       destination: './uploads',
-          filename: (req, file, cb) => {
-      cb(null, `photo-${randomUUID()}${extname(file.originalname)}`);
-    },
+      filename: (req, file, cb) => {
+        cb(null, `photo-${randomUUID()}${extname(file.originalname)}`);
+      },
     }),
     fileFilter: (req, file, cb) => {
       if (!file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
-        cb(new Error('Solo immagini sono permesse'), false);
+        cb(new BadRequestException('Sono ammesse solo immagini JPG, PNG o GIF'), false);
       } else {
         cb(null, true);
       }
@@ -61,11 +64,13 @@ export class IssuesController {
   }
 
   @Get('archived')
+  @Roles(UserRole.ADMIN) //solo gli amministratori possono consultare l'archivio
   async findArchived() {
     return this.issuesService.findArchived();
   }
 
   @Patch(':id/unarchive')
+  @Roles(UserRole.ADMIN)
   async unarchive(@Param('id') id: string) {
     return this.issuesService.unarchive(+id);
   }
@@ -81,6 +86,7 @@ export class IssuesController {
   }
 
   @Patch(':id/archive')
+  @Roles(UserRole.ADMIN) //solo gli amministratori possono archiviare (Funzionalità 13)
   async archive(@Param('id') id: string) {
     return this.issuesService.archive(+id);
   }
@@ -91,6 +97,7 @@ export class IssuesController {
   }
 
   @Patch(':id/assign')
+  @Roles(UserRole.ADMIN)
   async assign(@Param('id') id: string, @Body('assigneeId') assigneeId: number | null) {
     return this.issuesService.assign(+id, assigneeId);
   }
